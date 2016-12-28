@@ -6,8 +6,8 @@ export class Dict {
    * @param {Object} pairs key/value pairs for the dictionary
    * @parma {Object} options options for the dict
    */
-  constructor(pairs, options) {
-    this.pairs = {};
+  constructor(pairs = {}, options) {
+    this.pairs = pairs;
     this.throwingGet = true;
     // set if it should throw an error on get if value is not found
     if (options && _.has(options, 'throwingGet')) {
@@ -16,7 +16,7 @@ export class Dict {
       }
       this.throwingGet = options.throwingGet;
     }
-    this.set(pairs);
+    this.set(this.pairs);
   }
 
   /**
@@ -45,7 +45,7 @@ export class Dict {
       this._checkPairs(pairs);
       _.extend(this.pairs, pairs);
     } else {
-      throw new Error('dict._setPairs: must provide an object.');
+      throw new Error('dict.set: must provide an object.');
     }
   }
 

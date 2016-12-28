@@ -43,7 +43,7 @@ describe('dict', function() {
 
 describe('strings dict', function() {
   it('should set only strings', function() {
-    const stringsDict = new StringsDict({});
+    const stringsDict = new StringsDict();
     assert.doesNotThrow(function() {
       stringsDict.set({
         'test.string': new String()
@@ -58,7 +58,7 @@ describe('strings dict', function() {
 
 describe('numbers dict', function() {
   it('should set only numbers', function() {
-    const numbersDict = new NumbersDict({});
+    const numbersDict = new NumbersDict();
     assert.doesNotThrow(function() {
       numbersDict.set({
         'test.number': new Number()
@@ -73,7 +73,7 @@ describe('numbers dict', function() {
 
 describe('booleans dict', function() {
   it('should set only booleans', function() {
-    const booleansDict = new BooleansDict({});
+    const booleansDict = new BooleansDict();
     assert.doesNotThrow(function() {
       booleansDict.set({
         'test.boolean': true
