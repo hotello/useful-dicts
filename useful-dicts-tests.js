@@ -104,10 +104,6 @@ describe('functions dict', function() {
 describe('hooks dict', function() {
   const hooks = new HooksDict({});
 
-  beforeEach(function() {
-    hooks.pairs = {};
-  });
-
   it('should accept only arrays of functions', function() {
     assert.doesNotThrow(function() {
       hooks.set({'test.hooks': [new Function]});
@@ -124,14 +120,14 @@ describe('hooks dict', function() {
   });
 
   it('should add a hook to an array of hooks', function() {
-    hooks.add('test.hooks', new Function);
+    hooks.add('test.hooks', new Function());
     assert.isFunction(hooks.get('test.hooks')[0]);
   });
 
   it('should run all the hooks and return', function() {
     const fn = (arg) => arg + 1;
-    assert.equal(hooks.run('test.hooks', 'noHooks'), 'noHooks');
-    _.times(3, () => { hooks.add('test.hooks', fn); });
-    assert.equal(hooks.run('test.hooks', 0), 3);
+    assert.equal(hooks.run('test.noHooks', 'noHooks'), 'noHooks');
+    _.times(3, () => { hooks.add('test.sum', fn); });
+    assert.equal(hooks.run('test.sum', 0), 3);
   });
 });
